@@ -1,0 +1,53 @@
+{% extends 'base2.html' %}
+{% block content %}
+
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-10">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'view_income' %}">Incomes</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit Income</li>
+              </ol>
+            </nav>
+        </div>
+        <div class="col-md-2">
+            <a href="{% url 'delete_income' income.id %}" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+    <div class="card">
+        {% include 'partials/messages.html' %}
+        {% csrf_token %}
+        <div class="card-body">
+            <div class="form-group">
+                <label for="">Amount</label>
+                <input type="number" class="form-control-sm" name="amount" value="{{values.amount}}">
+            </div>
+            <div class="form-group">
+                <label for="">Description</label>
+                <input type="text" class="form-control-sm" name="description" value="{{values.description}}">
+                <div class="form-group">
+                    <label for="">Category</label>
+                    <select name="category" class="form-control-sm" >
+                        <option name="category" value="{{ values.category }}">
+                            {{ values.category }}
+                        </option>
+                        {%  for  category in categories%}
+                            <option name="category" value="{{ category.name }}">
+                                {{ category.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">Date Received</label>
+                    <input type="date" class="form-control-sm" name="date_received" value="{{values.date_received}}">
+                </div>
+            </div>
+            <input type="submit" value="Save Edit" class="btn btn-primary">
+        </div>
+    </div>
+</div>
+{% endblock %}

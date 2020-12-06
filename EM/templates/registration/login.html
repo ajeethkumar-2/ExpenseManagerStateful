@@ -1,0 +1,24 @@
+{% extends 'base_auth.html' %}
+{% load static %}
+{% block content %}
+
+    <form class="form-signin " method="post">
+        {% csrf_token %}
+      <img class="mb-4" src="{% static 'img/EM.png' %}" alt="" width="175" height="100">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      {% for field in form %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            {{ field }}
+        </div>
+        {% endfor %}
+        <button class="btn btn-lg btn-primary" type="submit">Sign in</button>
+        <div class="form mt-4 ">
+            <small id="emailHelp" class="form-text text-muted">Not a User?
+                <a href="{% url 'signup' %}">Register Here.</a></small>
+            <small id="emailHelp" class="form-text text-muted">Forget Password?
+                <a href="{% url 'password_reset' %}">Click Here.</a></small>
+        </div>
+    </form>
+
+{% endblock %}

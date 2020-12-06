@@ -1,0 +1,38 @@
+{% extends 'base2.html' %}
+{% block title %}Create Expense Category !!{% endblock %}
+{% block content %}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'view_income' %}">Incomes</a></li>
+                  <li class="breadcrumb-item"><a href="{% url 'add_income' %}">Add Income</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add Income Category</li>
+              </ol>
+            </nav>
+        </div>
+    </div>
+    <h3 class="col-12 mt-3">Add Income Category</h3>
+    <div class="container border-none float-left w-50 mt-3">
+        <form class="col-12" action="{% url 'add_income_category' %}" method="post">
+        {% include 'partials/messages.html' %}
+                {% csrf_token %}
+               <div class="card-body">
+                    <div class="form-group">
+                        <label>Category Name</label>
+                        <input type="text" class="form-control" name="name" value="{{values.name}}">
+                    </div>
+                <input type="submit" value="Add Income Category" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+

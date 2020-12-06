@@ -1,0 +1,23 @@
+{% extends 'base_auth.html' %}
+{% load static %}
+{% block content %}
+
+    <form class="form-signin mt-5" method="post">
+        {% csrf_token %}
+      <img class="mb-4" src="{% static 'img/EM.png' %}" alt="" width="175" height="100">
+      <h1 class="h3 mb-3 font-weight-normal">Please Sign Up</h1>
+      {% for field in form %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            {{ field }}
+        </div>
+        {% endfor %}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <div class="form mt-3">
+        <small id="emailHelp" class="form-text text-muted">Already a User?
+            <a href="{% url 'login' %}">Login Here.</a></small>
+        </div>
+    </form>
+
+
+{% endblock %}

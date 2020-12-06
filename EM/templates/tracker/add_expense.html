@@ -1,0 +1,55 @@
+{% extends 'base2.html' %}
+{% block content %}
+
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-10">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'view_expense' %}">Expenses</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add Expense</li>
+              </ol>
+            </nav>
+        </div>
+        <div class="col-md-2">
+            <a href="{% url 'add_expense_category'%}" class="btn btn-info btn-lg">AddCategory</a>
+        </div>
+    </div>
+    <h3 class="col-12 mt-3">Add Expense</h3>
+    <div class="container border-none float-left w-50 mt-3">
+        <form class="col-12" action="{% url 'add_expense' %}" method="post">
+        {% include 'partials/messages.html' %}
+        {% csrf_token %}
+            <div class="card-body">
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="number" class="form-control" name="amount" value="{{values.amount}}">
+                </div>
+                <div class="form-group">
+                    <label>Note</label>
+                    <input type="text" class="form-control" name="note" value="{{values.note}}">
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select name="category" class="form-control" >
+                        {%  for  category in categories%}
+                            <option name="category" value="{{ category.name }}">
+                                {{ category.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Date Received</label>
+                    <input type="date" class="form-control" name="date_paid" value="{{values.date_paid}}">
+                </div>
+            </div>
+                <input type="submit" value="Add Expense" class="btn btn-primary float-right mt-3">
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

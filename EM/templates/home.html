@@ -1,0 +1,19 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class=" mt-2 md-3"> Hi, <span style="color:green">{{user.first_name}} {{ user.last_name }}</span> Welcome to Expense Manager !!! </h2>
+    <br>
+    <a href="{% url 'add_income'%}" class="btn btn-outline-info btn-sm">Add Income</a>
+    <a href="{% url 'add_expense'%}" class="btn btn-outline-info btn-sm">Add Expense</a>
+    <br><br>
+    <div class="col-md-10 mt-5">
+        <h5 class='center mt-3'>Your total Income is: {{currency}} <span style="color:green;">{{income}}</span></h5>
+        <h5 class='center mt-3'>Your total Expense is : {{currency}} <span style="color:red;">{{expense}}</span></h5>
+
+        <div class="col s6">
+            <img class='responsive-img' src= "{% static 'chart/expense.jpg' %}">
+        </div>
+    </div>
+</div>
+{% endblock %}
